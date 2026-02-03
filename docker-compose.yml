@@ -45,7 +45,7 @@ services:
     restart: always
     environment:
       - WHATSAPP_HOOK_EVENTS=message
-      - WHATSAPP_HOOK_URL=http://host.docker.internal:5678/webhook/webhook
+      - WHATSAPP_HOOK_URL=http://n8n:5678/webhook/webhook
       - WAHA_DASHBOARD_USERNAME=${WAHA_DASHBOARD_USERNAME}
       - WAHA_DASHBOARD_PASSWORD=${WAHA_DASHBOARD_PASSWORD}
       - WAHA_API_KEY=${WAHA_API_KEY}
@@ -69,7 +69,6 @@ services:
       - N8N_BASIC_AUTH_PASSWORD=${N8N_BASIC_AUTH_PASSWORD}
       - N8N_HOST=${N8N_HOST}
       - N8N_SECURE_COOKIE=false
-      - 
     ports:
       - "5678:5678"
     volumes:
