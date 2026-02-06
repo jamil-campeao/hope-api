@@ -61,4 +61,16 @@ class UserRepository:
             return result is not None
         except Exception as e:
             raise Exception(f"Erro ao verificar se o usuário existe: {str(e)}")
+
+    async def get_user_by_email(self, email: str) -> UserResponse:
+        sql = """
+            SELECT email, name, phone, is_active, created_at, updated_at
+            FROM users
+            WHERE email = $1
+        """
+        try:
+            result = await self.conn.fetchrow(sql, email)
+            return UserResponse(**result)
+        except Exception as e:
+            raise Exception(f"Erro ao buscar usuário: {str(e)}")
         

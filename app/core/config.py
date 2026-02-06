@@ -22,6 +22,13 @@ class Settings(BaseSettings):
     N8N_HOST: str
     TOKEN: str
     N8N_PASSWORD: str
+    CLIENT_ID: str
+    CLIENT_SECRET: str
+    
+    # Google Integration
+    GOOGLE_CLIENT_ID: str
+    GOOGLE_CLIENT_SECRET: str
+    GOOGLE_REDIRECT_URI: str
 
     @property
     def POSTGRES_URI(self) -> str:
