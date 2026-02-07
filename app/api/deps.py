@@ -31,3 +31,6 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> UserResponse:
             return user
         except Exception:
             raise credentials_exception
+
+async def verify_api_token(current_user: UserResponse = Depends(get_current_user)):
+    return current_user

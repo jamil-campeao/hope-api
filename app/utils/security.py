@@ -1,6 +1,9 @@
-from fastapi import Depends
-from app.schemas.user_schema import UserResponse
-from app.api.deps import get_current_user
+from passlib.context import CryptContext
 
-async def get_user_data(current_user: UserResponse = Depends(get_current_user)) -> UserResponse:
-    return current_user
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return pwd_context.verify(plain_password, hashed_password)
+
+def get_password_hash(password: str) -> str:
+    return pwd_context.hash(password)

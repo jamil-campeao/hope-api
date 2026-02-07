@@ -21,7 +21,8 @@ class AuthGoogleService:
             "access_type": "offline",
             "prompt": "consent"
         }
-        return f"{base_url}?{urllib.parse.urlencode(params)}"
+        url = f"{base_url}?{urllib.parse.urlencode(params)}"
+        return url
 
     async def auth_google_callback(self, code: str, user_id: int):
         # 1. Exchange code for tokens
@@ -51,10 +52,6 @@ class AuthGoogleService:
 
         # Calculate expiration
         expires_at = datetime.utcnow() + timedelta(seconds=expires_in)
-        
-        # 2. Save to database
-        # Ensure table exists first
-        await self.repository.create_table_if_not_exists()
         
         await self.repository.save_tokens(user_id, access_token, refresh_token, expires_at)
         

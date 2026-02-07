@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from app.schemas.waha_schema import SessionCreate, MessageSend
 from app.services.waha_service import WahaService
 from app.api.deps import verify_api_token

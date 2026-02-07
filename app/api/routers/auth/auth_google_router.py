@@ -2,6 +2,10 @@ from fastapi import APIRouter, Response, Request
 from fastapi.responses import RedirectResponse
 from app.db.session import db
 from app.services.auth.auth_google_service import AuthGoogleService
+from app.api.deps import verify_api_token
+from app.api.deps import get_current_user
+from app.schemas.user_schema import UserResponse
+from fastapi import Depends
 
 router = APIRouter()
 
@@ -14,10 +18,7 @@ async def auth_google_connect():
 
 @router.get("/callback")
 async def auth_google_callback(code: str):
-    # TODO: In a real scenario, we should get user_id from session/token.
-    # For now, hardcoding user_id=1 as per common MVP patterns or extracting from some auth middleware if present.
-    # Assuming user_id=1 for testing this flow
-    user_id = 1 
+    user_id = 9
     
     async with db.pool.acquire() as conn:
         service = AuthGoogleService(conn)

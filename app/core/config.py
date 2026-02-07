@@ -22,8 +22,6 @@ class Settings(BaseSettings):
     N8N_HOST: str
     TOKEN: str
     N8N_PASSWORD: str
-    CLIENT_ID: str
-    CLIENT_SECRET: str
     
     # Google Integration
     GOOGLE_CLIENT_ID: str
